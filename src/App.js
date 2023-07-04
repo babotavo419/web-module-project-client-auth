@@ -1,30 +1,27 @@
+// App.js
 import React from 'react';
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import FriendsList from './components/FriendsList';
+import AddFriend from './components/AddFriend';
+import LogoutButton from './components/LogoutButton';
+import NavBar from './components/NavBar';
 
-const Login = () => {
-  return (<h2>Login</h2>)
-}
+const App = () => {
+  const isLoggedIn = !!localStorage.getItem('token');
 
-const FriendsList = () => {
-  return (<h2>FriendsList</h2>)
-}
-
-const AddFriend = () => {
-  return (<h2>AddFriend</h2>)
-}
-
-function App() {
   return (
-    <div className="App">
+    <>
+      <NavBar isLoggedIn={isLoggedIn} />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/friends" element={<FriendsList />} />
-        <Route path="/friends/add" element={<AddFriend />} />
+        <Route path="/friends" element={isLoggedIn ? <FriendsList /> : <Navigate to="/login" />} />
+        <Route path="/friends/add" element={isLoggedIn ? <AddFriend /> : <Navigate to="/login" />} />
+        <Route path="/logout" element={<LogoutButton />} />
       </Routes>
-    </div>
+    </>
   );
-}
+};
 
 export default App;
