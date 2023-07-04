@@ -1,11 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Logout = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
+  const handleLogout = async (event) => {
+    event.preventDefault();
     try {
       const token = localStorage.getItem('token');
       await axios.post('http://localhost:9000/api/logout', {}, {
@@ -14,18 +13,17 @@ const Logout = () => {
       // Remove the token from localStorage
       localStorage.removeItem('token');
       // Redirect to login page
-      navigate('/login');
+      window.location.href = '/login';
     } catch (error) {
       console.error('Failed to logout', error);
     }
   };
 
   return (
-    <button onClick={handleLogout}>
+    <Link to="#" onClick={handleLogout}>
       Logout
-    </button>
+    </Link>
   );
 };
 
 export default Logout;
-
