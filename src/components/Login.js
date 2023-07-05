@@ -20,6 +20,7 @@ const Login = () => {
 
   return (<div>
       <h1>Login</h1>
+      <h2>Friends DataBase</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
