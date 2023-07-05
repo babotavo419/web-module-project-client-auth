@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -20,34 +19,33 @@ const Login = () => {
   };
 
   return (<div>
-    <h1>Login</h1>
-    <form onSubmit={handleSubmit}>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
         <div>
-            <label htmlFor="username">Username:</label>
-            <input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-            
-        </div>
-        <div>
-            <label htmlFor="password">Password:</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    />
-      
+          <label htmlFor="username">Username:</label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
         <div>
-            <button type="submit">Login</button>
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-    </form>
+        <div>
+          <button type="submit">Login</button>
         </div>
+      </form>
+    </div>
   );
 };
 
 export default Login;
+
